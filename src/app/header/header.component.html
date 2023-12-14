@@ -1,0 +1,51 @@
+<!-- header.component.html -->
+<mat-toolbar class="header">
+  <button mat-button color="light" class="logo" routerLink="">DCX CMS</button>
+  <button mat-button color="light" routerLink="dashboard" routerLinkActive="active">Dashboard</button>
+  <button mat-button color="light" routerLink="pages">Pages</button>
+  <button mat-button color="light" routerLink="categories">Categories</button>
+  <button mat-button color="light" routerLink="users">Users</button>
+  <input type="text" [(ngModel)]="filterValue" placeholder="search" class=" btn-md rounded">
+  <button mat-button class="btn btn-light btn-md" color="light" (click)="myfn()">Submit</button>
+  <span class="spacer"></span>
+  <span>
+    <button mat-button color="light" [matMenuTriggerFor] = "lvl1master" >My Account</button>
+    <mat-menu #lvl1master="matMenu" >
+      <button mat-menu-item>level 1</button>
+      <button mat-menu-item>level 2</button>
+      <button mat-menu-item>level 3</button>
+      <button mat-menu-item>level 4</button>
+    </mat-menu>
+    <button mat-button color="light" >Logout </button>
+  </span>
+
+</mat-toolbar>
+
+
+
+
+<!-- <div class="header">
+    <h2 class="logo" routerLink=" ">DCX CMS</h2>
+      <div class="nav-item" routerLink="dashboard">Dashboard</div>
+      <div class="nav-item" routerLink="pages">Pages</div>
+      <div class="nav-item" routerLink="categories">Categories</div>
+      <div class="nav-item" routerLink="users">Users</div>
+      <div class = "search  btn-lg">
+        <input type="search" placeholder=" search" class=" btn-md rounded">
+        <button type="button" class="btn btn-light btn-md" >Submit</button>
+      </div>
+      <div class="justify-content-end space-between">
+        <span>My Account</span> -->
+        <!-- <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" 
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My Account 
+        </button> -->
+        <!-- <span  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </span>   -->
+        <!-- <span >Logout </span>
+      </div>
+  </div> -->
+  

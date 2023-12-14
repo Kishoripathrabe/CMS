@@ -1,0 +1,23 @@
+<!-- <a routerLink="dashboard" class="list-group-item list-group-item-action"><mat-icon>dashboard</mat-icon>
+    {{home.dashboard}}</a>
+<a routerLink="pages" class="list-group-item list-group-item-action"> <mat-icon>insert_drive_file</mat-icon>
+    {{home.pages}}</a>
+<a routerLink="categories" class="list-group-item list-group-item-action"><mat-icon>folder_open</mat-icon>
+    {{home.categories}}</a>
+<a routerLink="users" class="list-group-item list-group-item-action"><mat-icon>person</mat-icon>
+    {{home.useraccounts}}</a> -->
+
+
+    <a routerLink="dashboard" class="list-group-item list-group-item-action" routerLinkActive="active-link" [ngClass]="{'active': isItemRouteActive('dashboard')}">
+        <mat-icon>dashboard</mat-icon> {{home.dashboard}}
+    </a>
+    <a routerLink="pages" class="list-group-item list-group-item-action" routerLinkActive="active-link" [ngClass]="{'active': isItemRouteActive('pages')}">
+        <mat-icon>insert_drive_file</mat-icon>{{home.pages}}
+    </a>
+    <a routerLink="categories" class="list-group-item list-group-item-action" routerLinkActive="active-link" [ngClass]="{'active': isItemRouteActive('categories')}">
+        <mat-icon>folder_open</mat-icon> {{home.categories}}
+    </a>
+    <a routerLink="users" class="list-group-item list-group-item-action" routerLinkActive="active-link" [ngClass]="{'active': isItemRouteActive('users')}">
+        <mat-icon>person</mat-icon> {{home.useraccounts}}
+    </a>
+    
