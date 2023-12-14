@@ -8,7 +8,7 @@
     {{home.useraccounts}}</a> -->
 
 
-    <a routerLink="dashboard" class="list-group-item list-group-item-action" routerLinkActive="active-link" [ngClass]="{'active': isItemRouteActive('dashboard')}">
+    <a (click)="filterReset()" routerLink="dashboard" class="list-group-item list-group-item-action" routerLinkActive="active-link" [ngClass]="{'active': isItemRouteActive('dashboard')}">
         <mat-icon>dashboard</mat-icon> {{home.dashboard}}
     </a>
     <a routerLink="pages" class="list-group-item list-group-item-action" routerLinkActive="active-link" [ngClass]="{'active': isItemRouteActive('pages')}">

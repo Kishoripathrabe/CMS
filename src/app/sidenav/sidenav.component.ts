@@ -21,6 +21,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { FilterService } from '../service/filter.Service';
 
 @Component({
   selector: 'app-sidenav',
@@ -30,11 +31,15 @@ import { filter } from 'rxjs/operators';
 export class SidenavComponent {
   @Input() home: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private filterService:FilterService) {
   }
 
   isItemRouteActive(item: string): boolean {
     return this.router.url.includes(item);
+  }
+  filterReset(){
+    this.filterService.setFilterValue('')
+    this.filterService.resetFilter()
   }
 
 }

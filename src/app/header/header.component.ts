@@ -13,13 +13,20 @@ export class HeaderComponent implements OnInit {
   searchQuery: string = '';
   showMyAccountDropdown: boolean = false;
   data: any;
-filterValue:any;
+  filterValue:any;
   constructor(private dashoardservice: dashboardService,private filterService:FilterService) {
     this.getdashboard();
+    this.filterService.getresetFilter().subscribe(data=>{
+      console.log("reset called")
+      this.filterValue=""
+    })
    }
 
    myfn(){
     this.filterService.setFilterValue(this.filterValue)
+   }
+   resetfv(){
+    this.filterValue=""
    }
 
   ngOnInit(): void {
