@@ -16,6 +16,7 @@ export class DashboardComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   filterValue: string="";
+  selectedItems: Page[] = [];
 
   constructor(private dashboardService: dashboardService,private filterService:FilterService) {}
 
@@ -39,6 +40,14 @@ export class DashboardComponent implements AfterViewInit {
     this.dashboardService.getpages().subscribe((data: any) => {
       this.dataSource.data = data; // Assuming data is an array of Page objects
     });
+  }
+  isAllSelected() {
+    const numSelected = this.selectedItems.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+  masterToggle() {
+    
   }
 
 

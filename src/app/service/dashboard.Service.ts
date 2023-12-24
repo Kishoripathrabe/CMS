@@ -9,7 +9,8 @@ import '../../assets/pages.json';
 })
 export class dashboardService {
   private dataUrl = 'assets/dashboard.json'; 
-  private page = 'assets/pages.json';
+  // private page = 'assets/pages.json';
+  private page = 'https://onlineshoppingapi-default-rtdb.firebaseio.com/pages/pages.json';
   private pageData:any
   constructor(private http: HttpClient) {}
 

@@ -13,13 +13,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { UsersComponent } from './users/users.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { PagesComponent } from './pages/pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -28,6 +29,12 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { dashboardService } from './service/dashboard.Service';
 import { UserService } from './service/UserService';
 import { ButtonsComponent } from './buttons/buttons.component';
+import { NewItemDialogComponent } from './new-item-dialog/new-item-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormField } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,7 +47,8 @@ import { ButtonsComponent } from './buttons/buttons.component';
     DashboardComponent,
     HomeComponent,
     SidenavComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    NewItemDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,10 +62,15 @@ import { ButtonsComponent } from './buttons/buttons.component';
     MatSortModule,
     MatAutocompleteModule,
     MatMenuModule,
+    MatCheckboxModule,
+    MatDialogModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [UserService,dashboardService],
   bootstrap: [AppComponent]
