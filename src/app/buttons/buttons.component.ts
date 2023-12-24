@@ -19,7 +19,7 @@ export class ButtonsComponent {
      this.dialog.open(NewItemDialogComponent, {
       width: '100%', // Set the width to 100%
       panelClass: 'full-screen-dialog', // Apply a custom CSS class
-      data:{}
+      data:{action:"addObj"}
     });
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);
@@ -38,7 +38,7 @@ export class ButtonsComponent {
         this.dialog.open(NewItemDialogComponent, {
           width: '100%', // Set the width to 100%
           panelClass: 'full-screen-dialog', // Apply a custom CSS class
-          data:res[0]
+          data:{...res[0],action:"editObj"}
         });
       }
 

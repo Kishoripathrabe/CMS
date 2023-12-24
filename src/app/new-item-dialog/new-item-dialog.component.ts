@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { UserService } from '../service/UserService';
 
 
 @Component({
@@ -13,29 +14,62 @@ export class NewItemDialogComponent {
    newItemName: any;
    formGroup: FormGroup;
    selectedGroup: string = 'admin';
+   act="";
+   oldData:any;
   constructor(private http:HttpClient,@Inject(MAT_DIALOG_DATA) public data: any,
-  public dialogRef: MatDialogRef<NewItemDialogComponent>
+  public dialogRef: MatDialogRef<NewItemDialogComponent>,
+  private userService:UserService
   ){
     this.formGroup = new FormGroup({
       full_name: new FormControl(data.full_name?data.full_name:'', [Validators.required]),
       email: new FormControl(data.email?data.email:'', [Validators.required])
     })
-    this.selectGroup=data.group?data.group:"admin"
+    this.selectGroup=data.group?data.group:"admin";
+    this.act=data.action;
+    this.oldData={group:data.group,email:data.email,full_name:data.full_name}
   }
   selectGroup(group: string) {
     this.selectedGroup = group;
   }
-  saveNewItem(){
+saveNewItem(){
     if (this.formGroup.valid) {
       let result={...this.formGroup.value,group:this.selectedGroup}
       console.log('Form submitted:', result);
   
-this.fetchDataAndAddNewUser(result)
-    // this.http.post("https://onlineshoppingapi-default-rtdb.firebaseio.com/users.json",result).subscribe(data=>{
-    //   console.log("success done")
-    // })
+    this.fetchDataAndAddNewUser(result)
   }
 }
+editAndSaveItem(){
+  console.log(this.oldData,"this.oldData")
+        let resArr=[this.oldData];
+        // this.userService.deletemark(resArr);
+        //   this.saveNewItem()
+
+        this.http.get<any>('https://onlineshoppingapi-default-rtdb.firebaseio.com/users.json')
+        .subscribe((data: any[]) => {
+          // const filteredArray = data.filter((item:any) => farr.includes(item));
+          const filteredArray = data.filter(secondItem =>
+            !(resArr.some((firstItem:any) => firstItem.email === secondItem.email))
+          );
+          let result={...this.formGroup.value,group:this.selectedGroup}
+          filteredArray.push(result)
+       
+            let updatedData:any={}
+            filteredArray.filter(res=>!!res).forEach((user, index) => {
+             
+              updatedData[index.toString()] = user;
+       
+            });
+       
+            this.http.put('https://onlineshoppingapi-default-rtdb.firebaseio.com/users.json', updatedData)
+              .subscribe(() => {
+                console.log('deletemark ,Data updated successfully');
+              }, error => {
+                console.error('Error updating data:', error);
+              });
+          
+        });
+       }
 
 fetchDataAndAddNewUser(result:any): void {
   this.http.get<any>('https://onlineshoppingapi-default-rtdb.firebaseio.com/users.json')
@@ -57,7 +91,7 @@ fetchDataAndAddNewUser(result:any): void {
 
         this.http.put('https://onlineshoppingapi-default-rtdb.firebaseio.com/users.json', updatedData)
           .subscribe(() => {
-            console.log('Data updated successfully');
+            console.log('fetchDataAndAddNewUser Done');
           }, error => {
             console.error('Error updating data:', error);
           });
@@ -67,6 +101,9 @@ fetchDataAndAddNewUser(result:any): void {
 
 closeBox(){
   this.dialogRef.close()
+}
+saveAction(){
+this.act==="editObj"?this.editAndSaveItem():this.saveNewItem()
 }
 
 

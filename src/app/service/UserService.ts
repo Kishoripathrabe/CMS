@@ -39,7 +39,7 @@ export class UserService {
 
      this.http.put('https://onlineshoppingapi-default-rtdb.firebaseio.com/users.json', updatedData)
        .subscribe(() => {
-         console.log('Data updated successfully');
+         console.log('deletemark ,Data updated successfully');
        }, error => {
          console.error('Error updating data:', error);
        });
@@ -47,7 +47,5 @@ export class UserService {
  });
 }
 }
-function Of(selectedDataSub: Subject<unknown>) {
-  throw new Error('Function not implemented.');
-}
+
 
